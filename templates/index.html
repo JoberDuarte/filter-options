@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Ativos</title>
+    <script>
+        function toggleSelectGroup(className) {
+            const checkboxes = document.querySelectorAll('.' + className);
+            const allSelected = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allSelected);
+        }
+
+        function toggleSelectAll() {
+            const checkboxes = document.querySelectorAll('.checkbox-ativos');
+            const allSelected = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allSelected);
+        }
+
+        function toggleSelectAllExpiracoes() {
+            const checkboxes = document.querySelectorAll('.checkbox-expiracoes');
+            const allSelected = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allSelected);
+        }
+    </script>
+</head>
+<body>
+    <h1>Filtro de Ativos</h1>
+    <form action="/filtrar" method="POST">
+        <h3>Ativos</h3>
+        <button type="button" onclick="toggleSelectAll()">Selecionar/Deselecionar Todos</button>
+        <button type="button" onclick="toggleSelectGroup('ibovespa')">Selecionar/Deselecionar IBOVESPA</button>
+        <ul>
+            {% for ativo in ativos %}
+                <li>
+                    <input 
+                        type="checkbox" 
+                        class="checkbox-ativos {% if ativo in ibovespa_ativos %}ibovespa{% endif %}" 
+                        name="ativos" 
+                        value="{{ ativo }}">
+                    {{ ativo }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Tipo de Opção</h3>
+        <ul>
+            {% for tipo in opcao_tipo %}
+                <li>
+                    <input 
+                        type="checkbox" 
+                        name="opcao_tipo" 
+                        value="{{ tipo }}">
+                    {{ tipo }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Estilo</h3>
+        <ul>
+            {% for estilo in opcao_estilo %}
+                <li>
+                    <input 
+                        type="checkbox" 
+                        name="opcao_estilo" 
+                        value="{{ estilo }}">
+                    {{ estilo }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Data de Expiração</h3>
+        <button type="button" onclick="toggleSelectAllExpiracoes()">Selecionar/Deselecionar Todos</button>
+        <ul>
+            {% for exp in expiracoes %}
+                <li>
+                    <input 
+                        type="checkbox" 
+                        class="checkbox-expiracoes"
+                        name="expiracoes" 
+                        value="{{ exp }}">
+                    {{ exp }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <button type="submit">Filtrar</button>
+    </form>
+    <form action="/download-semanais" method="get" style="margin-top: 20px;">
+        <button type="submit">Download Semanais</button>
+    </form>
+    
+</body>
+</html>
+
+
+
