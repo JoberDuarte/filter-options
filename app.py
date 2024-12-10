@@ -6,7 +6,7 @@ import re
 app = Flask(__name__)
 
 # Caminho para o arquivo CSV tratado
-CSV_FILE = r"D:\Projetos_Python\downloads\dados_filtrados.csv"
+CSV_FILE = r"C:\filter-options\downloads\dados_filtrados.csv"
 
 # Lista de ativos IBOVESPA
 IBOVESPA_ATIVOS = [
@@ -83,7 +83,7 @@ def download_semanal():
     df_semanal = df[df['TckrSymb'].str.endswith(('W1', 'W2', 'W3', 'W4', 'W5'), na=False)]
 
     # Salva os dados filtrados em um novo arquivo
-    output_file = r"D:\Projetos_Python\downloads\dados_semanal.csv"
+    output_file = r"C:\filter-options\downloads\dados_semanal.csv"
     df_semanal.to_csv(output_file, index=False)
 
     return send_file(output_file, as_attachment=True)
@@ -136,7 +136,7 @@ def filtrar():
         return "Nenhum dado corresponde aos filtros selecionados.", 404
 
     # Salva os dados filtrados em um novo arquivo
-    output_file = r"D:\Projetos_Python\downloads\dados_filtrados_usuario.csv"
+    output_file = r"C:\filter-options\downloads\dados_filtrados_usuario.csv"
     df_filtrado.to_csv(output_file, index=False)
 
     return send_file(output_file, as_attachment=True)

@@ -17,14 +17,14 @@ def excluir_csvs_anteriores(pasta_downloads):
 
 # Função para realizar o download do CSV da B3 e renomear o arquivo
 def download_csv_b3():
-    pasta_downloads = r"D:\Projetos_Python\downloads"
+    pasta_downloads = r"C:\filter-options\downloads"
     excluir_csvs_anteriores(pasta_downloads)
     
     options = webdriver.EdgeOptions()
     prefs = {"download.default_directory": pasta_downloads}
     options.add_experimental_option("prefs", prefs)
     
-    driver = webdriver.Edge(service=Service(r"c:\Users\jober\Downloads\edgedriver_win64\msedgedriver.exe"), options=options)
+    driver = webdriver.Edge(service=Service(r"C:\Users\neves\Downloads\edgedriver_win64\msedgedriver.exe"), options=options)
 
     try:
         driver.get("https://arquivos.b3.com.br/#")
@@ -74,7 +74,7 @@ def filtrar_opcoes_csv(caminho_csv, pasta_downloads):
     return novo_csv
 
 # Caminho para a pasta onde os CSVs são salvos
-pasta_downloads = r"D:\Projetos_Python\downloads"
+pasta_downloads = r"C:\filter-options\downloads"
 
 # 1. Realiza o download do CSV e renomeia o arquivo
 caminho_csv = download_csv_b3()

@@ -17,7 +17,7 @@ def excluir_csvs_anteriores(pasta_downloads):
 
 def download_csv_b3():
     # Caminho para a pasta de downloads
-    pasta_downloads = r"D:\Projetos_Python\downloads"
+    pasta_downloads = r"C:\filter-options\downloads"
     
     # Exclui os arquivos CSV antigos
     excluir_csvs_anteriores(pasta_downloads)
