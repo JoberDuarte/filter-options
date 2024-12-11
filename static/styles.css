@@ -82,7 +82,7 @@ a:hover {
 main {
     padding: 2rem;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.39);
+    background-color: rgba(0, 0, 0, 0.568);
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.459);
     margin: 3rem 5rem;
 }
@@ -187,4 +187,30 @@ footer p {
     align-items: center;
     justify-content: flex-start;
     padding: 5px;
+}
+
+.grid-item input {
+    margin-right: 8px;
+}
+
+.grid-container4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding-left: 450px;
+    padding-right: 450px;
+}
+
+.grid-item4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.grid-item4 input {
+    margin-right: 8px;
 }

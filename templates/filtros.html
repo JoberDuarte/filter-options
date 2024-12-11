@@ -28,11 +28,13 @@ Planilha Essencial
 
 <body>
 <h1>Filtro de Ativos</h1>
+<br>
+<br>
 <form action="/filtrar" method="POST">
     <h3>Tipo de Opção</h3>
-    <div class="grid-container">
+    <div class="grid-container4">
         {% for tipo in opcao_tipo %}
-            <label class="grid-item">
+            <label class="grid-item4">
                 <input 
                     type="checkbox" 
                     name="opcao_tipo" 
@@ -42,10 +44,9 @@ Planilha Essencial
         {% endfor %}
     </div>
 
-    <h3>Estilo</h3>
-    <div class="grid-container">
+    <div class="grid-container4">
         {% for estilo in opcao_estilo %}
-            <label class="grid-item">
+            <label class="grid-item4">
                 <input 
                     type="checkbox" 
                     name="opcao_estilo" 
@@ -54,10 +55,11 @@ Planilha Essencial
             </label>
         {% endfor %}
     </div>
-
+    <br>
+    <br>
     <h3>Ativos</h3>
-    <button type="button" class="btn btn-primary" onclick="toggleSelectAll()">Selecionar/Deselecionar Todos</button>
-    <button type="button" class="btn btn-primary" onclick="toggleSelectGroup('ibovespa')">Selecionar/Deselecionar IBOVESPA</button>
+    <button type="button" class="btn btn-primary" onclick="toggleSelectAll()" style="margin-right: 20px;">Selecionar todos</button>
+    <button type="button" class="btn btn-primary" onclick="toggleSelectGroup('ibovespa')">Selecionar IBOVESPA</button>
     <br>
     <br>
     <div class="grid-container">
@@ -72,9 +74,10 @@ Planilha Essencial
             </label>
         {% endfor %}
     </div>
-
+    <br>
+    <br>
     <h3>Data de Expiração</h3>
-    <button type="button" class="btn btn-primary" onclick="toggleSelectAllExpiracoes()">Selecionar/Deselecionar Todos</button>
+    <button type="button" class="btn btn-primary" onclick="toggleSelectAllExpiracoes()">Selecionar todos</button>
     <br>
     <br>
     <div class="grid-container">
@@ -93,7 +96,7 @@ Planilha Essencial
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
 <form action="/download-semanais" method="get" style="margin-top: 20px;">
-    <button type="submit" class="btn btn-primary">Download Semanais</button>
+    <button type="submit" class="btn btn-primary">Download - Opções Semanais</button>
 </form>
 </body>
 
