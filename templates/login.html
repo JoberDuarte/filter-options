@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{%block main %}
+<h2>Faça o login</h2>
+<p>Acesse à ferramenta Options Filter com o email e a senha cadastrados.</p>
+<br>
+<form action="/login" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="email"
+            placeholder="Email" type="email">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" name="password" placeholder="Senha" type="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Login</button>
+</form>
+<br>
+<p>Ainda não tem uma conta? <a href="/registrar">Cadastre-se aqui</a>.</p>
+{% endblock %}

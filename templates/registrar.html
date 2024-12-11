@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Registrar
+{% endblock %}
+
+{% block main %}
+<h2>Registre-se aqui</h2>
+<p>Faça o seu registro para ter acesso à ferramenta de filtragem de opções.</p>
+<br>
+<form action="{{ url_for('registrar') }}" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="email" placeholder="Email"
+            type="email">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" name="password" placeholder="Senha" type="password">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirme a senha" type="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Registrar</button>
+</form>
+<br>
+<p>Já tem uma conta? <a href="/login">Faça o login aqui</a>.</p>
+{%endblock %}

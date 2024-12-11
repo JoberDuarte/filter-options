@@ -1,9 +1,99 @@
+#Código Jober
 from flask import Flask, render_template, request, send_file
 import pandas as pd
 import os
 import re
 
+
+#Código Adriana
+import sqlite3
+from flask import Flask, flash, redirect, render_template, request, session, url_for, Response
+from werkzeug.security import check_password_hash, generate_password_hash
+
 app = Flask(__name__)
+
+app.secret_key = "sua_chave_secreta_segura"
+
+def get_db_connection():
+    conn = sqlite3.connect('users.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/registrar", methods=["GET", "POST"])
+def registrar():
+    session.clear()
+    if request.method == "POST":
+        if not request.form.get("email"):
+            flash("O email de usuário é obrigatório!", "danger")
+            return render_template("registrar.html")
+        if not request.form.get("password"):
+            flash("Senha é obrigatória!", "danger")
+            return render_template("registrar.html")
+        if request.form.get("password") != request.form.get("confirmation"):
+            flash("As senhas não coincidem!", "danger")
+            return render_template("registrar.html")
+
+        conn = get_db_connection()
+        rows = conn.execute("SELECT * FROM users WHERE email = ?", (request.form.get("email"),)).fetchall()
+        conn.close()
+        
+        if rows:
+            flash("Este email já está registrado!", "danger")
+            return render_template("registrar.html")
+
+        conn = get_db_connection()
+        conn.execute(
+            "INSERT INTO users (email, hash) VALUES (?, ?)",
+            (request.form.get("email"), generate_password_hash(request.form.get("password"))),
+        )
+        conn.commit()
+        conn.close()
+
+        flash("Registro realizado com sucesso!", "success")
+        return redirect(url_for("login"))
+    
+    return render_template("registrar.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    session.clear()
+
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        if not email or not password:
+            flash("E-mail e senha são obrigatórios!", "danger")
+            return render_template("login.html")
+
+        conn = get_db_connection()
+        rows = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchall()
+        conn.close()
+
+        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
+            flash("E-mail ou senha inválidos!", "danger")
+            return render_template("login.html")
+
+        session["user_id"] = rows[0]["id"]
+        flash("Login realizado com sucesso!", "success")
+        return redirect(url_for("filtros"))
+    
+    return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("Logout realizado com sucesso!", "info")
+    return redirect("/")
+
+#A partir daqui o código é do Jober
 
 # Caminho para o arquivo CSV tratado
 CSV_FILE = r"C:\filter-options\downloads\dados_filtrados.csv"
@@ -25,8 +115,8 @@ IBOVESPA_ATIVOS = [
     "WEGE3", "YDUQ3"
 ]
 
-@app.route('/')
-def index():
+@app.route("/filtros")
+def filtros():
     if not os.path.exists(CSV_FILE):
         return "O arquivo 'dados_filtrados.csv' não foi encontrado. Certifique-se de que ele foi gerado corretamente.", 404
 
@@ -61,7 +151,7 @@ def index():
     opcao_estilo = list(set(opcao_estilo))
 
     # Passa a lista de ativos IBOVESPA para o template
-    return render_template('index.html', 
+    return render_template('filtros.html', 
                            ativos=ativos, 
                            expiracoes=expiracoes,
                            opcao_tipo=opcao_tipo,

@@ -1,0 +1,190 @@
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    font-family: 'Verdana', sans-serif;
+    font-size: small;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #457b9d;
+}
+
+a:hover {
+    color: #d3137c;
+}
+
+.navbar {
+    background-color: #001027;
+}
+
+.navbar-brand {
+    color: rgb(92, 207, 252);
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-transform:uppercase;
+    font-size: large;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.562);
+
+}
+
+.navbar-brand:hover {
+    color: #a8dadc;
+}
+
+.nav-link {
+    color: #f1faee;
+}
+
+.nav-link:hover {
+    color: #a8dadc;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: small;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+main {
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.39);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.459);
+    margin: 3rem 5rem;
+}
+
+main h1 {
+    font-family: "Righteous", sans-serif;
+    font-style: normal;
+    text-transform:uppercase;
+    font-size: 30px;
+    margin-bottom: 1.2rem;
+}
+
+main h2 {
+    font-weight: normal;
+    font-size: 22px;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.562);
+}
+main h3 {
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: #001027;
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+footer p {
+    font-size: small;
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+.hero {
+    color: white;
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.benefits h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.benefit-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.benefit-item {
+    color: #001027;
+    background-color: rgba(255, 255, 255, 0.74);
+    padding: 1.5rem;
+    border-radius: 5px;
+    border-width: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.562);
+}
+
+.benefit-item:hover {
+    background-color: white;
+    transform: translateY(-5px);
+}
+
+.hero h1 {
+    font-size: 50px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.562);
+}
+
+.grid-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+}
+
+.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+}

@@ -69,7 +69,7 @@ def filtrar_opcoes_csv(caminho_csv, pasta_downloads):
 
     # Salva o CSV tratado
     novo_csv = os.path.join(pasta_downloads, 'dados_filtrados.csv')
-    df_filtrado.to_csv(novo_csv, index=False)
+    df_filtrado.to_csv(novo_csv, filtros=False)
     print(f"Novo CSV com os dados filtrados salvo em: {novo_csv}")
     return novo_csv
 
