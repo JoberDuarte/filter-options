@@ -1,14 +1,11 @@
-#Código Jober
-from flask import Flask, render_template, request, send_file
-import pandas as pd
+from flask import Flask, render_template, request, send_file, flash, redirect, session, url_for, Response
+from werkzeug.security import check_password_hash, generate_password_hash
+
 import os
 import re
-
-
-#Código Adriana
 import sqlite3
-from flask import Flask, flash, redirect, render_template, request, session, url_for, Response
-from werkzeug.security import check_password_hash, generate_password_hash
+
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -93,8 +90,6 @@ def logout():
     flash("Logout realizado com sucesso!", "info")
     return redirect("/")
 
-#A partir daqui o código é do Jober
-
 # Caminho para o arquivo CSV tratado
 CSV_FILE = r"C:\filter-options\downloads\dados_filtrados.csv"
 
@@ -177,7 +172,6 @@ def download_semanal():
     df_semanal.to_csv(output_file, index=False)
 
     return send_file(output_file, as_attachment=True)
-
 
 
 @app.route('/filtrar', methods=['POST'])
